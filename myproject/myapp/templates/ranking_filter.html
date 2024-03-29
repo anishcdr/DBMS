@@ -1,0 +1,188 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fixtures</title>
+  <link rel="icon" href="project\images\logo.png" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <style>
+    #logo {
+      width: 40%;
+      height: 40%;
+    }
+
+    #title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: red;
+      gap: 5px;
+      font-size: 200px;
+      font-weight: 900;
+      font-family: 'Poppins';
+    }
+
+    .container-fluid {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 80vh;
+      /* Ensure the container takes the full height of the viewport */
+    }
+
+    navbar {
+      background-color: #0C0910;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Poppins';
+      color-scheme: unset;
+      color: whitesmoke;
+      overflow-x: hidden;
+      height: 10vh;
+      border: bottom 50px;
+      margin-bottom: 2.5%;
+    }
+
+    #nav-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: red;
+      gap: 5px;
+      color: white;
+      font-size: 20px;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .npk {
+      background-color: #233D4D;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 50px;
+      color: #FCCA46;
+      overflow: hidden;
+    }
+
+    .moisture {
+      background-color: #320E3B;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 50px;
+      color: #93B3EA;
+      overflow: hidden;
+    }
+
+    #navbarNavDropdown {
+      position: relative;
+      left: 75%;
+    }
+
+    body {
+      background-color: burlywood;
+      color: white;
+    }
+
+    table {
+      font-size: 15px;
+      background-color: burlywood;
+    }
+
+    thead {
+      font-weight: bold;
+      text-align: center;
+      background-color: burlywood;
+    }
+
+    td {
+      width: 40%;
+      text-align: center;
+      background-color: burlywood;
+    }
+  </style>
+</head>
+
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+
+  <navbar class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="#" id="nav-title"><img src="{% static 'images/logo1.png' %}" alt="Logo" width="30"
+        height="24" class="d-inline-block align-text-top"><strong>Cricket Haven</strong></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" href="{%url 'welcome'%}"
+            style="color:white;font-family:'Poppins';font-weight:bold">Home</a>
+        </li>
+      </ul>
+    </div>
+  </navbar>
+  
+ 
+
+  <div class="container" style="align-items: center;" id="table">
+    <table class="table" style="font-weight:bold;border: 10px black;">
+      <thead>
+        <th>Team ranking</th>
+        <th>Team name</th>
+        <th>Rating</th>
+      </thead>
+      {%for entry in data%}
+      <tr>
+        <td>{{entry.Team_ranking}}</td>
+        <td>{{entry.Team_name}}</td>
+        <td>{{entry.Rating}}</td>
+        <!--<td id="optimum"></td>-->
+      </tr>
+      {%endfor%}
+    </table>
+  </div>
+  <br>
+  <div class="container">
+    {%csrf_token%}
+    <form action="{% url 'download_csv2' %}" method="get">
+    <button class="btn btn-outline-success" type="submit">Download csv</button>
+  </div>
+<script>
+ /* var data=document.getElementById("optimum");
+  "{%for entry in data%}"
+    var data1="{{entry.nitrogen}}"
+    var data2="{{entry.phosphorus}}"
+    var data3="{{data.potassium}}"
+    if(20<=data1<=200){
+      if(30<=data2<=100){
+        if(100<=data3<=200)
+          data.innerHTML="Optimum soil condition nutrient wise"
+        else if(data3<=100)
+          data.innerHTML="Use potassium fertilizers such as potassium chloride and potassium sulphate";
+        else
+          data.innerHTML="Leaching can be useful to reduce"
+      }
+    }
+    "{%endfor%}"*/
+    
+</script>
+</body>
+</html>
